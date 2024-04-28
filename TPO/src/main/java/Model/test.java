@@ -9,16 +9,22 @@ public class test {
         Materia fundamentos_informatica = new Materia("Fundamentos de informatica",30,null,null,null,null);
         Materia programacion = new Materia("Programacion",20,null,null,null,null);
         Materia programacionII = new Materia("Programacion II",25,null,null,null,null);
+        Materia Poo = new Materia("Programacion Orientado a Objetos",40,null,null,null,null);
+        Materia Adoo = new Materia("Proceso de Desarrollo de Software",30,null,null,null,null);
 
         List<Materia> materias = new ArrayList<>();
         materias.add(fundamentos_informatica);
         materias.add(programacion);
         materias.add(programacionII);
+        materias.add(Poo);
+        materias.add(Adoo);
 
         fundamentos_informatica.setCorrelativaPosterior(materias.get(1));
         programacion.setCorrelativaAnterior(materias.get(0));
         programacion.setCorrelativaPosterior(materias.get(2));
         programacionII.setCorrelativaAnterior(materias.get(1));
+        Poo.setCorrelativaPosterior(materias.get(4));
+        Adoo.setCorrelativaAnterior(materias.get(3));
 
         Carrera ingieneria = Carrera.getInstancia();
         ingieneria.setNombre("Ingieneria en Informatica");

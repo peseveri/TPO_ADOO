@@ -38,20 +38,23 @@ public class Docente {
         for (int i = 0; i < cursos.size(); i++) {
             Curso curso = cursos.get(i);
             String dia = "";
-            if (curso.getDia() == 1){
-                dia = "Lunes";
-            }
-            if (curso.getDia() == 2){
-                dia = "Martes";
-            }
-            if (curso.getDia() == 3){
-                dia = "Miercoles";
-            }
-            if (curso.getDia() == 4){
-                dia = "Jueves";
-            }
-            if (curso.getDia() == 5){
-                dia = "Viernes";
+            int diaSemana = curso.getDia();
+            switch (diaSemana) {
+                case 1:
+                    dia = "Lunes";
+                    break;
+                case 2:
+                    dia = "Martes";
+                    break;
+                case 3:
+                    dia = "Miercoles";
+                    break;
+                case 4:
+                    dia = "Jueves";
+                    break;
+                case 5:
+                    dia = "Viernes";
+                    break;
             }
             String mensaje = String.format("Dia: %s, Curso: %d, Aula: %s , Horario: %s ", dia,curso.getId(), curso.getAula(), curso.getHorario());
             System.out.println(mensaje);

@@ -5,15 +5,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public  class ControladorInscripciones {
-
     private Alumno alumno;
-
     private AdapterMercadoPago adaptadorMP;
-
     private static ControladorInscripciones instancia;
-
     private Docente docente;
-
     private AdapterPDF adaptadorPDF;
 
     private ControladorInscripciones() {
@@ -41,6 +36,10 @@ public  class ControladorInscripciones {
 
        List<Curso> cursos = new ArrayList<>();
        Curso cursoSeleccionado = this.obtenerCursoPorId(materia,idCurso);
+       if (cursoSeleccionado == null){
+           System.out.println("El curso seleccionado no existe, volver a realizar el proceso de inscripcion");
+           return null;
+       }
        System.out.print("Se te rediccionara a Mercado Pago para realizar el pago de la inscripcion \n ");
        this.abonarCuota(cursoSeleccionado);
        cursos.add(cursoSeleccionado);
@@ -87,7 +86,7 @@ public  class ControladorInscripciones {
         Materia anterior = materia.getCorrelativaAnterior();
         List<Materia> listaMateriasAprobadas  = alumno.getMateriasAprobadas();
         if (!listaMateriasAprobadas.contains(anterior)){
-            System.out.println("El alumno no aprobo la correlativa anterior, se detiene el proceso de inscripcion");
+            System.out.println("El alumno no aprobo la correlativa anterior " + anterior.getNombre() + ", se detiene el proceso de inscripcion");
             return false;
         }
         else{
@@ -95,13 +94,13 @@ public  class ControladorInscripciones {
             return  true;
         }
     }
-
     private boolean chequearFechaLimite(Materia materia){
         Date fechaActual = new Date();
         Date fechaInscripcion = materia.getUltimoDiaInscripcion();
 
         if (fechaActual.getMonth() > fechaInscripcion.getMonth() || (fechaActual.getMonth() == fechaInscripcion.getMonth() && fechaActual.getDate() > fechaInscripcion.getDate())){
-            System.out.println("Fecha maxima de inscripcion: " + fechaInscripcion );
+            int mes = fechaInscripcion.getMonth() + 1;
+            System.out.println("Fecha maxima de inscripcion: " + fechaInscripcion.getDate() +"/"+mes);
             System.out.println("No se puede llevar a cabo el proceso ya que ya paso la fecha limite, se detiene el proceso de inscripcion");
             return false;
         }
@@ -111,7 +110,6 @@ public  class ControladorInscripciones {
             return true;
         }
     }
-
     private boolean chequearCargaHoraria(Carrera carrera, Materia materia){
         if (materia.getCarga_horaria()> carrera.getCargaHorariaMaximaPorCuatrimestre()){
             System.out.println("La materia supera la carga horaria maxima estipulada por la carrera, se detiene el proceso de inscripcion");
@@ -131,7 +129,6 @@ public  class ControladorInscripciones {
         }
         return null;
     }
-
     private void mostrarCursosInscriptos(Alumno alumno){
         for (int i = 0; i < alumno.getCursoInscripto().size(); i++) {
             Curso curso = alumno.getCursoInscripto().get(i);

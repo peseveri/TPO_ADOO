@@ -5,24 +5,13 @@ import java.util.List;
 
 
 public class Alumno {
-
     private String nombre;
-
-
     private int matricula;
-
     private List<Curso> cursoInscripto;
-
-
     private static Alumno instancia;
-
-
     private List<Materia> materiasAprobadas;
-
     private Carrera carrera;
-
     private int cargaHoraria;
-
     private Alumno(String nombre, int matricula, Carrera carrera, List<Materia> materiasAprobadas) {
         this.nombre = nombre;
         this.matricula = matricula;

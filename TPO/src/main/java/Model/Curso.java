@@ -4,15 +4,12 @@ import java.util.List;
 
 
 public class Curso implements Comparable<Curso>{
-
     private int id;
     private String aula;
     private int capacidadAula;
     private String horario;
-
     private List<Docente> docente;
     private Float precio;
-
     private int dia;
     private static int lastId = 0;
 
