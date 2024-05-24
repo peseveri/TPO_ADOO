@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -8,20 +9,26 @@ import java.util.List;
  * 
  */
 public class Docente {
-
     private String nombre;
     private List<Curso> cursos;
+    private String horarioPreferido;
+    private String turnoPreferido;
 
-    public Docente(String nombre, List<Curso> cursos) {
+    private int horasAsignadas;
+
+    public Docente(String nombre, List<Curso> cursos, String horarioPreferido, String turnoPreferido, int horasAsignadas ) {
         this.nombre = nombre;
-        this.cursos = cursos;
+        this.cursos = new ArrayList<>();
+        this.horarioPreferido = horarioPreferido;
+        this.turnoPreferido = turnoPreferido;
+        this.horasAsignadas = horasAsignadas;
     }
 
     public Void verCursos() {
         System.out.println("Hola docente " + this.nombre + "! a continuacion veras los cursos en donde estas asignado");
         for (int i = 0; i < cursos.size(); i++) {
             Curso curso = cursos.get(i);
-            String mensaje = String.format("ID Curso: %d, Aula: %s , Capacidad: %s, Horario: %s ", curso.getId(), curso.getAula(), curso.getCapacidadAula(), curso.getHorario());
+            String mensaje = String.format(" Curso: %d, Aula: %s , Horario: %s , Turno: %s", curso.getId(), curso.getAula(), curso.getHorario(), curso.getTurno());
             System.out.println(mensaje);
         }
         return null;
@@ -56,7 +63,7 @@ public class Docente {
                     dia = "Viernes";
                     break;
             }
-            String mensaje = String.format("Dia: %s, Curso: %d, Aula: %s , Horario: %s ", dia,curso.getId(), curso.getAula(), curso.getHorario());
+            String mensaje = String.format("Dia: %s, Curso: %d, Aula: %s , Horario: %s , Turno: %s", dia, curso.getId(), curso.getAula(), curso.getHorario(), curso.getTurno());
             System.out.println(mensaje);
         }
         return null;
@@ -75,7 +82,25 @@ public class Docente {
         return cursos;
     }
 
-    public void setCursos(List<Curso> cursos) {
-        this.cursos = cursos;
+    public String getHorarioPreferido() {
+        return horarioPreferido;
+    }
+
+    public String getTurnoPreferido() {
+        return turnoPreferido;
+    }
+
+    public void setCursos(Curso curso) {
+        if (curso != null) {
+            this.cursos.add(curso);
+        }
+    }
+
+    public int getHorasAsignadas() {
+        return horasAsignadas;
+    }
+
+    public void setHorasAsignadas(int horasAsignadas) {
+        this.horasAsignadas = horasAsignadas;
     }
 }

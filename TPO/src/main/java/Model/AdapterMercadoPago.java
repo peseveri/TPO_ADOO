@@ -7,9 +7,13 @@ public class AdapterMercadoPago {
 
     private MercadoPagoAPI apiMP;
 
-    public Void abonarCuota(Curso curso) {
+    public AdapterMercadoPago() {
+        this.apiMP = new MercadoPagoAPI();
+    }
+
+    public Void abonarCuota() {
         MercadoPagoAPI apiMP = new MercadoPagoAPI();
-        apiMP.abonarCuota(curso);
+        apiMP.abonarCuota();
         return null;
     }
 

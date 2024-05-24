@@ -6,18 +6,26 @@ import java.nio.file.Paths;
 
 public  class ControladorInscripciones {
     private Alumno alumno;
-    private AdapterMercadoPago adaptadorMP;
+    private Materia materia;
     private static ControladorInscripciones instancia;
-    private Docente docente;
-    private AdapterPDF adaptadorPDF;
 
     private ControladorInscripciones() {
+
     }
 
-    public Void inscribir(Alumno alumno, Materia materia ) {
+    public static ControladorInscripciones getInstancia() {
+        if (instancia == null){
+            instancia = new ControladorInscripciones();
+        }
+        return instancia;
+    }
+    public Void inscribir(int matricula, String nombre_materia ) {
         Scanner scanner = new Scanner(System.in);
         Carrera ingieneria = Carrera.getInstancia();
         ingieneria.setCargaHorariaMaximaPorCuatrimestre(50);
+
+        Alumno alumno = obtenerAlumnoPorMatricula(matricula);
+        Materia materia = obtenerMateria(nombre_materia);
 
         if (!this.chequearCorrelativa(alumno,materia)){
             return null;
@@ -40,48 +48,22 @@ public  class ControladorInscripciones {
            System.out.println("El curso seleccionado no existe, volver a realizar el proceso de inscripcion");
            return null;
        }
-       System.out.print("Se te rediccionara a Mercado Pago para realizar el pago de la inscripcion \n ");
-       this.abonarCuota(cursoSeleccionado);
-       cursos.add(cursoSeleccionado);
-       alumno.setCursoInscripto(cursos);
-       scanner.close();
+       System.out.print("Se te rediccionara al modulo de pagos para realizar el pago de las inscripcion\n");
 
-       System.out.println("Inscripcion correcta al curso: " + cursoSeleccionado.getId());
-       alumno.setCargaHoraria(materia.getCarga_horaria());
-       this.mostrarCursosInscriptos(alumno);
+
        return null;
     }
 
-    public Void asignarCursoADocente(List<Curso> curso, Docente docente){
-        docente.setCursos(curso);
+    public Void getInscriptosCurso(String nombre_materia){
+        Materia materia = obtenerMateria(nombre_materia);
+        List<Curso> cursos = materia.getCurso();
+        System.out.println("A continuacion se mostraran los inscriptos por curso para la materia " + materia.getNombre());
+        for (Curso curso : cursos) {
+            System.out.println("Total de inscriptos para el curso " + curso.getId() + ": " + curso.getInscriptos());
+        }
         return null;
+
     }
-
-    public static ControladorInscripciones getInstancia() {
-       if (instancia == null){
-           instancia = new ControladorInscripciones();
-       }
-        return instancia;
-    }
-
-    private Void abonarCuota(Curso curso) {
-        AdapterMercadoPago adaptadorMP =  new AdapterMercadoPago();
-        adaptadorMP.abonarCuota(curso);
-        return null;
-    }
-
-    public Void generarInforme(Docente docente) throws IOException {
-        AdapterPDF adaptadorPDF = new AdapterPDF();
-
-        Collections.sort(docente.getCursos(), Comparator
-                .comparingInt(Curso::getDia)
-                .thenComparing(Curso::getHorario)
-        );
-
-        adaptadorPDF.generarInforme(docente);
-        return null;
-    }
-
     private boolean chequearCorrelativa(Alumno alumno, Materia materia){
         Materia anterior = materia.getCorrelativaAnterior();
         List<Materia> listaMateriasAprobadas  = alumno.getMateriasAprobadas();
@@ -120,6 +102,24 @@ public  class ControladorInscripciones {
             return true;
         }
     }
+    private Alumno obtenerAlumnoPorMatricula(int matricula){
+        if (this.alumno.getMatricula() == matricula) {
+            return alumno;
+        }
+        else {
+            return null;
+        }
+    }
+
+    private Materia obtenerMateria(String nombre){
+        if (this.materia.getNombre() == nombre) {
+           return materia;
+        }
+        else {
+            return null;
+        }
+    }
+
     private Curso obtenerCursoPorId(Materia materia, int id){
         for (int i = 0; i < materia.getCurso().size(); i++) {
             Curso curso = materia.getCurso().get(i);
@@ -129,11 +129,12 @@ public  class ControladorInscripciones {
         }
         return null;
     }
-    private void mostrarCursosInscriptos(Alumno alumno){
-        for (int i = 0; i < alumno.getCursoInscripto().size(); i++) {
-            Curso curso = alumno.getCursoInscripto().get(i);
-            String mensaje = String.format("ID Curso: %d, Aula: %s , Capacidad: %s, Horario: %s, Precio: %.2f $", curso.getId(), curso.getAula(), curso.getCapacidadAula(), curso.getHorario(), curso.getPrecio());
-            System.out.println(mensaje);
-        }
+
+    public void setAlumno(Alumno alumno) {
+        this.alumno = alumno;
+    }
+
+    public void setMateria(Materia materia) {
+        this.materia = materia;
     }
 }

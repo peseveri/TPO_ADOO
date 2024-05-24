@@ -9,11 +9,10 @@ public class AdapterPDF {
 
     private PdfApi apiPDF;
 
-    public AdapterPDF() {
+    public AdapterPDF( ) {
+        this.apiPDF = new PdfApi() ;
     }
-
     public Void generarInforme(Docente docente) throws IOException {
-        PdfApi apiPDF = new PdfApi();
         apiPDF.generarInforme(docente);
         return null;
     }

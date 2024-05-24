@@ -80,12 +80,33 @@ public class Alumno {
         for (int i = 0; i < materia.getCurso().size(); i++) {
             Curso curso = materia.getCurso().get(i);
             List<Docente> docente = curso.getDocente();
-            String mensaje = String.format("ID Curso: %d, Aula: %s , Capacidad: %s, Horario: %s, Precio: %.2f $", curso.getId(), curso.getAula(), curso.getCapacidadAula(), curso.getHorario(), curso.getPrecio());
+            String mensaje = String.format("ID Curso: %d, Aula: %s , Capacidad: %s, Horario: %s, Turno: %s, Precio: %.2f $", curso.getId(), curso.getAula(), curso.getCapacidadAula(), curso.getHorario(), curso.getTurno(), curso.getPrecio());
             System.out.println(mensaje);
             for (int j = 0; j < docente.size(); j++) {
                 System.out.println("Docente asignado: " + docente.get(j).getNombre());
             }
         }
+        return null;
+    }
+
+    public Void verCursosPorTurno(Materia materia, String turno) {
+        System.out.println("Hola " + this.nombre + "! a continuacion veras los cursos disponibles para " + materia.getNombre() + "para el turno " + turno);
+
+        for (int i = 0; i < materia.getCurso().size(); i++) {
+            Curso curso = materia.getCurso().get(i);
+
+
+            if (turno.equalsIgnoreCase(curso.getTurno())) {
+                List<Docente> docentes = curso.getDocente();
+                String mensaje = String.format("ID Curso: %d, Aula: %s , Capacidad: %s, Horario: %s, Turno: %s, Precio: %.2f $", curso.getId(), curso.getAula(), curso.getCapacidadAula(), curso.getHorario(), curso.getTurno(), curso.getPrecio());
+                System.out.println(mensaje);
+
+                for (int j = 0; j < docentes.size(); j++) {
+                    System.out.println("Docente asignado: " + docentes.get(j).getNombre());
+                }
+            }
+        }
+
         return null;
     }
 }

@@ -14,4 +14,8 @@ public class ModuloAlumno {
         return alumno.verCursos(materia) ;
     }
 
+    public Void verCursosPorTurno(Materia materia, String turno) {
+        return alumno.verCursosPorTurno(materia,turno) ;
+    }
+
 }

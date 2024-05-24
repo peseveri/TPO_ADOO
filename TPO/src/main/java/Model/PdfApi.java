@@ -8,8 +8,7 @@ import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.Random;
 
 public class PdfApi {
 
@@ -18,6 +17,7 @@ public class PdfApi {
 
         PDDocument document = new PDDocument();
         PDPage page = new PDPage();
+        Random random = new Random();
         document.addPage(page);
 
         PDPageContentStream contentStream = new PDPageContentStream(document, page);
@@ -52,7 +52,8 @@ public class PdfApi {
                     break;
             }
 
-            String mensaje = String.format("ID Curso: %d, Aula: %s , Capacidad: %s, Dia: %s , Horario: %s ", curso.getId(), curso.getAula(), curso.getCapacidadAula(),dia, curso.getHorario());
+            int randomValue = random.nextInt(10) + 1;
+            String mensaje = String.format("ID Curso: %d, Aula: %s , Capacidad: %s, Inscriptos: %s, Dia: %s , Horario: %s ", curso.getId(), curso.getAula(), curso.getCapacidadAula(),curso.getCapacidadAula() - randomValue,dia, curso.getHorario());
             contentStream.showText(mensaje);
             contentStream.newLine();
         }
