@@ -8,11 +8,9 @@ public  class ControladorInscripciones {
     private Alumno alumno;
     private Materia materia;
     private static ControladorInscripciones instancia;
-
     private ControladorInscripciones() {
 
     }
-
     public static ControladorInscripciones getInstancia() {
         if (instancia == null){
             instancia = new ControladorInscripciones();
@@ -53,7 +51,6 @@ public  class ControladorInscripciones {
 
        return null;
     }
-
     public Void getInscriptosCurso(String nombre_materia){
         Materia materia = obtenerMateria(nombre_materia);
         List<Curso> cursos = materia.getCurso();
@@ -110,7 +107,6 @@ public  class ControladorInscripciones {
             return null;
         }
     }
-
     private Materia obtenerMateria(String nombre){
         if (this.materia.getNombre() == nombre) {
            return materia;
@@ -119,7 +115,6 @@ public  class ControladorInscripciones {
             return null;
         }
     }
-
     private Curso obtenerCursoPorId(Materia materia, int id){
         for (int i = 0; i < materia.getCurso().size(); i++) {
             Curso curso = materia.getCurso().get(i);
@@ -129,11 +124,9 @@ public  class ControladorInscripciones {
         }
         return null;
     }
-
     public void setAlumno(Alumno alumno) {
         this.alumno = alumno;
     }
-
     public void setMateria(Materia materia) {
         this.materia = materia;
     }

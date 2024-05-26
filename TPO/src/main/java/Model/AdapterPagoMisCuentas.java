@@ -2,7 +2,6 @@ package Model;
 
 public class AdapterPagoMisCuentas {
     PagoMisCuentasApi pagoMisCuentasApi;
-
     public AdapterPagoMisCuentas() {
         this.pagoMisCuentasApi = new PagoMisCuentasApi();
     }

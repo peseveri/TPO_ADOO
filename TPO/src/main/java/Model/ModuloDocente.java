@@ -5,7 +5,6 @@ package Model;
  */
 public class ModuloDocente {
     private Docente docente;
-
     public ModuloDocente(Docente docente) {
         this.docente = docente;
     }

@@ -11,8 +11,6 @@ import java.nio.file.Paths;
 import java.util.Random;
 
 public class PdfApi {
-
-
     public Void generarInforme(Docente docente) throws IOException {
 
         PDDocument document = new PDDocument();

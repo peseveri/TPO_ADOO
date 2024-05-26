@@ -13,9 +13,7 @@ public class Docente {
     private List<Curso> cursos;
     private String horarioPreferido;
     private String turnoPreferido;
-
     private int horasAsignadas;
-
     public Docente(String nombre, List<Curso> cursos, String horarioPreferido, String turnoPreferido, int horasAsignadas ) {
         this.nombre = nombre;
         this.cursos = new ArrayList<>();
@@ -23,7 +21,6 @@ public class Docente {
         this.turnoPreferido = turnoPreferido;
         this.horasAsignadas = horasAsignadas;
     }
-
     public Void verCursos() {
         System.out.println("Hola docente " + this.nombre + "! a continuacion veras los cursos en donde estas asignado");
         for (int i = 0; i < cursos.size(); i++) {
@@ -33,8 +30,6 @@ public class Docente {
         }
         return null;
     }
-
-
     public Void verCronograma() {
         List<Curso> cursos = this.getCursos();
         Collections.sort(cursos, Comparator
@@ -68,38 +63,29 @@ public class Docente {
         }
         return null;
     }
-
-
     public String getNombre() {
         return nombre;
     }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
     public List<Curso> getCursos() {
         return cursos;
     }
-
     public String getHorarioPreferido() {
         return horarioPreferido;
     }
-
     public String getTurnoPreferido() {
         return turnoPreferido;
     }
-
     public void setCursos(Curso curso) {
         if (curso != null) {
             this.cursos.add(curso);
         }
     }
-
     public int getHorasAsignadas() {
         return horasAsignadas;
     }
-
     public void setHorasAsignadas(int horasAsignadas) {
         this.horasAsignadas = horasAsignadas;
     }

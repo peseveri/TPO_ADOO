@@ -11,13 +11,10 @@ public class Curso implements Comparable<Curso>{
     private List<Docente> docente;
     private Float precio;
     private int dia;
-
     private int horas_mensuales;
-
     private int inscriptos;
     private String turno;
     private static int lastId = 0;
-
     public Curso(String aula, int capacidadAula, String horario, int dia, List<Docente> docente, Float precio,String turno,int horas_mensuales) {
         this.aula = aula;
         this.capacidadAula = capacidadAula;
@@ -42,7 +39,6 @@ public class Curso implements Comparable<Curso>{
     public String getHorario() {
         return horario;
     }
-
     public String getTurno() {
         return turno;
     }
@@ -55,19 +51,15 @@ public class Curso implements Comparable<Curso>{
     public Float getPrecio() {
         return precio;
     }
-
     public int getHoras_mensuales() {
         return horas_mensuales;
     }
-
     public int getInscriptos() {
         return inscriptos;
     }
-
     public void setInscriptos(int inscriptos) {
         this.inscriptos = inscriptos;
     }
-
     public int getId() {
         return id;
     }

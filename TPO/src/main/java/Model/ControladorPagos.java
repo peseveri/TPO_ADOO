@@ -4,8 +4,9 @@ import java.util.Scanner;
 
 public class ControladorPagos {
     private static ControladorPagos instancia;
-    private EstrategiaPago estrategia;
 
+    private Alumno alumno;
+    private EstrategiaPago estrategia;
     private ControladorPagos() {
 
     }
@@ -41,8 +42,6 @@ public class ControladorPagos {
         scanner.close();
         return null;
     }
-
-
     private void setEstrategia(EstrategiaPago estrategia) {
         this.estrategia = estrategia;
     }

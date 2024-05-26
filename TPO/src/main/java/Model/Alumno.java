@@ -18,7 +18,6 @@ public class Alumno {
         this.carrera = carrera;
         this.materiasAprobadas = new ArrayList();
     }
-
     public static Alumno getInstancia() {
         if (instancia == null){
 
@@ -26,55 +25,42 @@ public class Alumno {
         }
         return instancia;
     }
-
     public String getNombre() {
         return nombre;
     }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
     public int getMatricula() {
         return matricula;
     }
-
     public void setMatricula(int matricula) {
         this.matricula = matricula;
     }
-
     public List<Curso> getCursoInscripto() {
         return cursoInscripto;
     }
-
     public void setCursoInscripto(List<Curso> cursoInscripto) {
         this.cursoInscripto = cursoInscripto;
     }
-
     public List<Materia> getMateriasAprobadas() {
         return materiasAprobadas;
     }
-
     public void setMateriasAprobadas(List<Materia> materiasAprobadas) {
         this.materiasAprobadas = materiasAprobadas;
     }
-
     public Carrera getCarrera() {
         return carrera;
     }
-
     public void setCarrera(Carrera carrera) {
         this.carrera = carrera;
     }
-
     public int getCargaHoraria() {
         return cargaHoraria;
     }
-
     public void setCargaHoraria(int cargaHoraria) {
         this.cargaHoraria = cargaHoraria;
     }
-
     public Void verCursos(Materia materia) {
         System.out.println("Hola " + this.nombre + "! a continuacion veras los cursos disponibles para " + materia.getNombre());
         for (int i = 0; i < materia.getCurso().size(); i++) {
@@ -88,7 +74,6 @@ public class Alumno {
         }
         return null;
     }
-
     public Void verCursosPorTurno(Materia materia, String turno) {
         System.out.println("Hola " + this.nombre + "! a continuacion veras los cursos disponibles para " + materia.getNombre() + "para el turno " + turno);
 

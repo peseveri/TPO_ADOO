@@ -1,14 +1,8 @@
 package Model;
 
 import java.io.IOException;
-
-/**
- * 
- */
 public class AdapterPDF {
-
     private PdfApi apiPDF;
-
     public AdapterPDF( ) {
         this.apiPDF = new PdfApi() ;
     }

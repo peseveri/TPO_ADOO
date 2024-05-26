@@ -8,10 +8,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Random;
-
-
 public class ExcelApi {
-
     public void generarInforme(Docente docente) throws IOException {
         Workbook workbook = new XSSFWorkbook();
         Sheet sheet = workbook.createSheet("Informe Docente");

@@ -7,28 +7,19 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ControladorDocente {
-
     private Docente docente;
-
     private List<Curso> cursos;
-
     private static ControladorDocente instancia;
-
-    private AdapterPDF adapterPDF;
-
     private EstrategiaInforme estrategiaInforme;
-
     private ControladorDocente() {
 
     }
-
     public static ControladorDocente getInstancia() {
         if (instancia == null){
             instancia = new ControladorDocente();
         }
         return instancia;
     }
-
     public Void asignarCursoADocente(String nombre, int idcurso){
         Docente docente = obtenerDocente(nombre);
         Curso curso = obtenerCursoPorId(idcurso);
@@ -61,7 +52,6 @@ public class ControladorDocente {
         }
         return null;
     }
-
     public Void generarInforme(String nombre) throws IOException {
         Scanner scanner = new Scanner(System.in);
         EstrategiaInforme pdf = new Pdf();
@@ -90,12 +80,10 @@ public class ControladorDocente {
         scanner.close();
         return null;
     }
-
     public int getHorasAsignadasMensualmente (String nombre){
         Docente docente = obtenerDocente(nombre);
         return docente.getHorasAsignadas();
     }
-
     private Docente obtenerDocente(String nombre){
         if (this.docente.getNombre() == nombre) {
             return docente;
@@ -104,7 +92,6 @@ public class ControladorDocente {
             return null;
         }
     }
-
     private Curso obtenerCursoPorId(int id) {
         for (Curso curso : this.cursos) {
             if (curso.getId() == id) {
@@ -113,15 +100,12 @@ public class ControladorDocente {
         }
         return null;
     }
-
     private void setEstrategiaInforme(EstrategiaInforme estrategiaInforme) {
         this.estrategiaInforme = estrategiaInforme;
     }
-
     public void setDocente(Docente docente) {
         this.docente = docente;
     }
-
     public void setCursos(List<Curso> cursos) {
         this.cursos = cursos;
     }
